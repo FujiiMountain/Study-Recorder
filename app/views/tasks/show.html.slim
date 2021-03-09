@@ -1,0 +1,26 @@
+h1 データ一覧
+
+= render "shared/show_flash"
+
+- if @tasks != nil
+  #main
+    .row
+      .col-md-12
+        table.table
+          thead
+            tr.table-secondary
+              th 日付
+              th 名称
+              th 時間
+              th
+              th
+          tbody
+            - @tasks.each do |task|
+              tr
+                th.align-middle = task.date
+                th.align-middle = task.name
+                th.align-middle = task.amount
+                th.align-middle = link_to "編集", edit_task_url(task), class: "btn btn-primary"
+                th.delete_button.align-middle = link_to "削除", task_url(task), method: :delete, class: "delete_task_link btn btn-danger"
+        = paginate @tasks
+  

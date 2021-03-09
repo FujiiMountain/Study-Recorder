@@ -1,0 +1,38 @@
+h1 新規登録
+
+= render "shared/show_flash"
+
+- if @error
+  .alert.alert-danger #{@errors_count}個のエラーがあります
+
+#main
+  .row
+    .col-md-6.col-md-offset-3
+      = form_with model: @user, local: true do |f|
+        .form-group
+          = f.label :name, '名前'
+          = f.text_field :name, class: 'form-control'
+          - if @error && @have_error_name
+            p style="color: red;" ※#{@have_error_name}
+  
+        .form-group
+          = f.label :email, 'メールアドレス'
+          = f.text_field :email, class: 'form-control'
+          - if @error && @have_error_email
+            p style="color: red;" ※#{@have_error_email}
+      
+        .form-group
+          = f.label :password, 'パスワード（※文字数を６から２０で英字と数字を１つ以上使用）'
+          = f.password_field :password, class: 'form-control'
+          - if @error && @have_error_password
+            p style="color: red;" ※#{@have_error_password}
+  
+        .form-group
+          = f.label :password_confirmation, 'パスワード（再入力）'
+          = f.password_field :password_confirmation, class: 'form-control'
+          - if @error && @have_error_password_confirmation
+            p style="color: red;" ※#{@have_error_password_confirmation}
+  
+        = f.submit '登録', class: 'btn btn-primary'
+  .link
+    = link_to 'ログインはこちら', login_url

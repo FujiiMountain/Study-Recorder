@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title
+      | Study Recorder
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body data-turbolink="false"
+    nav.app-title.navbar.navbar-expand-md.navbar-light.bg-light
+      .container
+        .navbar-nav.mr-auto
+          .navbar-brand.font-italic Study Recorder
+        ul.navbar-nav
+          - if !current_user
+            li = link_to '新規登録', new_user_url, class: 'nav-link'
+            li = link_to 'ログイン', login_url, class: 'nav-link'
+          - else
+            li = link_to 'ホーム', tasks_url, class: 'nav-link'
+            - if current_user.admin 
+              li = link_to 'ユーザー一覧', users_url, class: 'nav-link'
+            li = link_to '登録内容', edit_user_url(current_user.id), class: 'nav-link'
+            li = link_to 'ログアウト', logout_url, method: :delete, class: 'nav-link'
+    .container
+      #main
+        main
+          = yield
+        footer  
+          small made by FujiiMountain

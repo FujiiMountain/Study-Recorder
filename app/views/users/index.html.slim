@@ -1,0 +1,25 @@
+h1 ユーザー一覧
+
+= render "shared/show_flash"
+
+#main
+  .row
+    .col-md-12
+      table.table
+        thead
+          tr.table-secondary
+            th 名前
+            th メールアドレス
+            th 管理者権限
+            th
+            th
+        tbody
+          - @users.each do |user|
+            tr
+              th.align-middle = user.name
+              th.align-middle = user.email
+              th.align-middle = user.admin
+              th.align-middle = link_to "編集", user_url(user), class: "btn btn-primary"
+              th.align-middle = link_to "削除", user_url(user), method: :delete, class: "delete_task_link btn btn-danger",
+                                                data: { confirm: "すべてのデータを削除します。\nよろしいですか？ "}
+      = paginate @users

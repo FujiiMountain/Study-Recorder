@@ -1,0 +1,14 @@
+h1 メールアドレス変更
+
+= render "shared/show_flash"
+
+.row
+  .col-md-6.col-md-offset-3
+    = form_with scope: :change_email, url: change_emails_url, local: true do |f|
+      .form-group
+        p 既存メールアドレス
+        = @user.email
+      .form-group
+        = f.label :email, "変更メールアドレス"
+        = f.text_field :email, class: "form-control"
+      = f.submit "送信", class: "btn btn-primary"

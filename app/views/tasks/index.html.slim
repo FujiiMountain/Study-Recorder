@@ -1,0 +1,24 @@
+h1 ホーム
+
+= render "shared/show_flash"
+
+#main
+  .row
+    .col-md-4
+      = link_to "新規作成", new_task_url, class: "text-body"
+      = " / "
+      = link_to "データ一覧", task_url(current_user), class: "text-body"
+      .calendar
+        = month_calendar do |date|
+          = link_to date.day, new_task_url(date: date), class: "text-body align-middle d-flex justify-content-center" 
+  
+    .col-md-8
+      = link_to "週", show_graph_url(id: 1), class: "text-body" 
+      = " / "
+      = link_to "月", show_graph_url(id: 2), class: "text-body" 
+      = " / "
+      = link_to "年", show_graph_url(id: 3), class: "text-body" 
+      = " / "
+      = link_to "計", show_graph_url(id: 4), class: "text-body"
+      = column_chart @graphdata, max: @graphdata_max + 1
+  

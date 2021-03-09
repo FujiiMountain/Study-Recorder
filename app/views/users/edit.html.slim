@@ -1,0 +1,26 @@
+h1 登録内容
+
+= render "shared/show_flash"
+
+#main
+  .row
+    .col-md-6.col-md-offset-3
+      = form_with model: @user, local: true do |f|
+        .form-group
+          = f.label :name, '名前'
+          = f.text_field :name, class: 'form-control'      
+        .form-group
+          = "メールアドレス"
+          = link_to "（メールアドレス変更はこちら）", new_change_email_url
+          p.edit_user_email
+            = @user.email
+        .form-group
+          = f.label :password, 'パスワード（※文字数を６から２０で英字と数字を１つ以上使用）' 
+          = f.password_field :password, class: 'form-control'
+        .form-group
+          = f.label :password_confirmation, 'パスワード（再入力）'
+          = f.password_field :password_confirmation, class: 'form-control'
+        = f.submit '更新', class: 'btn btn-primary'
+      = link_to "アカウント削除", user_url(@user), method: :delete,
+                                                   class: 'btn btn-danger edit_user_delete',
+                                                   data: { confirm: "すべてのデータを削除します。\nよろしいですか？ "}

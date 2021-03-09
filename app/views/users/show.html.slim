@@ -1,0 +1,16 @@
+h1 ユーザ情報
+
+= render "shared/show_flash"
+
+ul.list-group#show_tasks
+  li.list-group-item.list-group-item-secondary データ一覧
+  - @tasks.each do |task|
+    li.list-group-item
+      = link_to "#{task.date} - #{task.name} - #{task.amount}", edit_task_url(task)
+      = link_to "削除", task_url(task), method: :delete
+  = paginate @tasks
+
+.label 名称
+= @user.name
+.label メールアドレス
+= @user.email

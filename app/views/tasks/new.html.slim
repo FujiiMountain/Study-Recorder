@@ -1,0 +1,39 @@
+h1 作成・確認
+
+= render partial: "shared/show_flash"
+#main
+  .row
+    .col-md-6
+      = form_with model: @task, local: true do |f|
+        .form-group
+          = f.label :date, '日付'
+          = f.text_field :date, class: 'form-control', placeholder: "例：#{Date.today.strftime("%Y-%m-%d")}"
+        .form-group
+          = f.label :name, '名称'
+          = f.text_field :name, class: 'form-control', placeholder: "例：プログラミング"
+        .form-group
+          = f.label :amount, '時間'
+          = f.text_field :amount, class: 'form-control', placeholder: "例：5.5（入力は0-24で小数点第一位まで）"
+        = f.submit "登録", class: 'btn btn-primary'
+
+    - if @task.date != nil && @tasks != [] && @tasks != nil
+      .col-md-6
+        table.table
+          thead
+            tr.table-secondary
+              th.align-middle colspan="4"
+                = @tasks.first.date
+                = "  登録一覧"
+            tr.table-secondary
+              th.align-middle 名称
+              th.align-middle 時間
+              th
+              th  
+          tbody
+            - @tasks.each do |task|
+              tr  
+                th.align-middle = task.name
+                th.align-middle = task.amount
+                th.align-middle = link_to "編集", edit_task_url(task), class: "btn btn-primary"
+                th.a.delete_button.lign-middle = link_to "削除", task_url(task), method: :delete, class: "delete_task_link btn btn-danger"
+        = paginate @tasks
