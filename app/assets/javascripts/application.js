@@ -20,10 +20,9 @@
 //= require jquery_ujs
 
 $(document).on('turbolinks:load', function() {
-  $('#chart-1').css('height', $(window).innerHeight() - $('nav').outerHeight() - $('footer').outerHeight() - $('h1').outerHeight() - 100);
-
   $('footer').css('width', $('#main').outerWidth());
 
+  $('#chart-1').css('height', $(window).innerHeight() - $('nav').outerHeight() - $('footer').outerHeight() - $('h1').outerHeight() - 100);
   // #chart-1の高さの決定を待つためsetTimeoutを使用 →  ない場合、/tasksで条件分岐がtrueになる
   setTimeout(function() {
     if( $(window).innerHeight() < $('footer').offset().top + $('footer').outerHeight() ) {
@@ -31,9 +30,13 @@ $(document).on('turbolinks:load', function() {
       $('#main').css('height', 'auto');
     } else {
       $('body').css('height', $(window).innerHeight());
-      $('#main').css('height', $(window).innerHeight() - $('nav').outerHeight() - $('footer').outerHeight());
+      $('#main').css('height', $(window).innerHeight() - $('nav').outerHeight() - 20);
       $('footer').css('position', 'fixed');
       $('footer').css('bottom', '0');
     }
+    $('.content_space').css('width', $('#main').width());
+    $('.content_space').css('height', $('#main').outerHeight() - $('h1').outerHeight() - $('footer').outerHeight());
+    $('.content').css('padding', ($('.content').height() * 0.2) + "px 0  0  30px");
   }, 0);
+
 });

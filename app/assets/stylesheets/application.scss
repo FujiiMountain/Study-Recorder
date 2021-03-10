@@ -20,7 +20,6 @@
 // application begin
 body {
   background-color: #f0f0f0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
 }
 
 h1 {
@@ -31,7 +30,6 @@ h1 {
 }
 
 footer {
-  margin: 10px 0;
   padding: 0 30px;
   color: #fff;
   background-color: #000;
@@ -40,7 +38,6 @@ footer {
 
 // view + footer
 #main {
-  margin: 10px 0;
   background-color: #fff;
 }
 
@@ -69,13 +66,16 @@ table {
 }
 
 // top
+.content_space {
+}
+
 .content {
-  margin: 30px 0;
-  padding: 30px;
-  background-color: gray;
   font-size: 50px;
   color: white;
   font-weight: bold;
+  background-color: gray;
+  width: 100%;
+  height: 80%;
 }
 
 // tasks
