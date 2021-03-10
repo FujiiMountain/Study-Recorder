@@ -36,7 +36,7 @@ $(document).on('turbolinks:load', function() {
     }
     $('.content_space').css('width', $('#main').width());
     $('.content_space').css('height', $('#main').outerHeight() - $('h1').outerHeight() - $('footer').outerHeight());
-    $('.content').css('padding', ($('.content').height() * 0.2) + "px 0  0  30px");
+    //$('.content').css('width', $('#main').width());
   }, 0);
 
 });

@@ -1,6 +1,6 @@
 Rails.application.configure do
   # メール送信設定
-  config.action_mailer.default_url_options = {  :host => 'https://peaceful-journey-57148.herokuapp.com/' }
+  config.action_mailer.default_url_options = {  :host => 'https://whispering-oasis-18725.herokuapp.com/' }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
